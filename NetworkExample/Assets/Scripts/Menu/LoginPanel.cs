@@ -24,8 +24,6 @@ public class LoginPanel : MonoBehaviour
     private void Start()
     {
         idInput.text = $"Player {Random.Range(100, 1000)}";
-
-        
     }
 
     public void OnLoginButtonClick()

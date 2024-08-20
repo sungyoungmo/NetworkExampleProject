@@ -68,7 +68,8 @@ public class MenuPanel : MonoBehaviour
         {
             MaxPlayers = 8,
         };
-        PhotonNetwork.JoinRandomOrCreateRoom(roomOptions:option);
+        string roomName = $"Random Room {Random.Range(100, 1000)}";
+        PhotonNetwork.JoinRandomOrCreateRoom(roomOptions:option, roomName: roomName);
     }
 
     private void LogoutButtonClick()
