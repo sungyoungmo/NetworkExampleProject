@@ -3038,7 +3038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &921403418
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5245,7 +5245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1575837953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5286,9 +5286,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomTitleText: {fileID: 1053198190}
   playerList: {fileID: 992884098}
-  playerTextPrefab: {fileID: 952302184645582124, guid: ad1b3d9912b02c049ad024ef3d16776a, type: 3}
+  playerTextPrefab: {fileID: 5934883807912630289, guid: 83c7bc15dbbe729429ad282ca417289b, type: 3}
   startButton: {fileID: 1116237413}
   cancelButton: {fileID: 1991995511}
+  diffDropdown: {fileID: 2091308945}
+  diffText: {fileID: 1597956645}
 --- !u!1 &1580671922
 GameObject:
   m_ObjectHideFlags: 0

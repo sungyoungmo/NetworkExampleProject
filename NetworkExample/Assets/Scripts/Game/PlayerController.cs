@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
     public float moveSpeed = 10f;
     public Text hpText;
     public Text shotText;
+    public GameObject[] Eyes;
 
 
     private void Awake()
@@ -28,9 +29,25 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         pointer.gameObject.SetActive(photonView.IsMine);    //내가 조종하는 캐릭터의 Pointer만 활성화
+        //print(photonView.Owner.CustomProperties);
+
+        for (int i = 0; i < Eyes.Length; i++)
+        {
+            if (i == (int)PhotonNetwork.LocalPlayer.CustomProperties["Eyes"])
+            {
+                Eyes[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                Eyes[i].gameObject.SetActive(false);
+            }
+
+
+        }
 
         hpText.text = hp.ToString();
         //photonView = GetComponent<PhotonView>();
+        ///PhotonNetwork.LocalPlayer
     }
 
 
@@ -71,7 +88,7 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
     private void Rotate()
     {
         var pos = rb.position;  //내 rb의 위치
-        pos.y = 0;  //고저차가 있을 수 있으므로 y축좌표를 0으로
+        pos.y = 0;  //고저 차가 있을 수 있으므로 y축좌표를 0으로
 
         var forward = pointer.position - pos;
         rb.rotation = Quaternion.LookRotation(forward, Vector3.up); //내 위치에서 pointer 쪽으로 바라보도록 함
@@ -80,6 +97,8 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
     // Bomb에 PhotonView가 붙을 경우 불필요한 패킷이 교환되는 비효율이 발생하므로, 특정 클라이언트가
     // Fire를 호출할 경우 다른 클라이언트에게 RPC를 통해 똑같이 Fire를 호출하도록 하고싶음.
     // RPC를 한 메소드들은 어트리부트를 가져야 하며 PhotonMessageInfo를 가져야 한다.
+    // 추측 항법(Dead Reckoning) 알고리즘을 활용하기 위해 투사체는 각 클라이언트에서 생성하도록
+    // Remote Procedure Call을 함.
     [PunRPC]
     private void Fire(Vector3 shotPoint, Vector3 shotDirection, PhotonMessageInfo info)
     {
@@ -97,6 +116,7 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
         bomb.owner = photonView.Owner;
 
         // 폭탄의 위치에서 폭탄의 운동량만큼 지연시간 동안 진행한 위치로 보정
+        // (지연 보상)
         bomb.rb.position += bomb.rb.velocity * lag;
     }
 
