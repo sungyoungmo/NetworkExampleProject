@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "421865067801",
+    "firebase_url": "https://myfirebasetest-4460a-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "myfirebasetest-4460a",
+    "storage_bucket": "myfirebasetest-4460a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421865067801:android:a13b98bee99d6cc68ee188",
+        "android_client_info": {
+          "package_name": "com.kistudent.myfirebasetest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt7xuG9XTUbB4QEA_A0pSGEV6FdyDlMjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
