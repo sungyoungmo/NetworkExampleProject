@@ -20,13 +20,18 @@ public class PlayerEntry : MonoBehaviour
     {
         //readyToggle.onValueChanged.AddListener(ReadyToggleClick);
         //readyToggle.isOn = false; => onValueChaged가 호출됨
+        
+
         readyToggle.SetIsOnWithoutNotify(false);    // => isOn값을 수정하지만 onValueChaged가 호출되지 않음
 
         foreach (Toggle toggle in eyesToggle)
         {
             toggle.SetIsOnWithoutNotify(false);
         }
-        eyesToggle[0].isOn = true;
+
+        var a = HWFirebaseManager.Instance.userData.eyes;
+
+        eyesToggle[a].isOn = true;
 
     }
 

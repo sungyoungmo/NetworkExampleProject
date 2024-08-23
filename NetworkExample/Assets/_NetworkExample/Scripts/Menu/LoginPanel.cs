@@ -36,7 +36,7 @@ public class LoginPanel : MonoBehaviour
         createButton.interactable = false;
         loginButton.interactable = false;
 
-        yield return new WaitUntil(() => FirebaseManager.Instance.IsInitialized);
+        yield return new WaitUntil(() => HWFirebaseManager.Instance.IsInitialized);
 
         idInput.interactable = true;
         pwInput.interactable = true;
@@ -47,7 +47,7 @@ public class LoginPanel : MonoBehaviour
     public void CreateButtonClick()
     {
         createButton.interactable = false;
-        FirebaseManager.Instance.Create(idInput.text, pwInput.text,
+        HWFirebaseManager.Instance.Create(idInput.text, pwInput.text,
             (user) =>
             {
                 print("회원 가입 성공");
@@ -60,10 +60,12 @@ public class LoginPanel : MonoBehaviour
     public void LoginButtonClick()
     {
         loginButton.interactable = false;
-        FirebaseManager.Instance.Login(idInput.text, pwInput.text,
+        HWFirebaseManager.Instance.Login(idInput.text, pwInput.text,
             (user) =>
             {
                 loginButton.interactable = true;
+
+                PanelManager.Instance.PanelOpen("Menu");
             }
         );
     }

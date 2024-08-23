@@ -160,7 +160,7 @@ public class RoomPanel : MonoBehaviourPunCallbacks
         }
     }
 
-    private void StartButtonClick()
+    private async void StartButtonClick()
     {
         // 게임 시작 버튼
         // 기존의 씬 로드 방식
@@ -169,6 +169,14 @@ public class RoomPanel : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
+            var eyesRef = HWFirebaseManager.Instance.usersRef.Child("eyes");
+
+            var ey = PhotonNetwork.LocalPlayer.CustomProperties["Eyes"];
+
+            await eyesRef.SetValueAsync((int)ey);
+
+            HWFirebaseManager.Instance.userData.eyes = (int)ey;
+
             // Photon을 통해 플레이어들과 씬을 동기화 하여 로드
             PhotonNetwork.LoadLevel("GameScene");
         }

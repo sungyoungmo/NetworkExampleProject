@@ -32,12 +32,17 @@ public class PanelManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AddCallbackTarget(this);
     }
 
-    
+    private void Start()
+    {
+        
+    }
+
 
     private void OnDestroy()
     {
         PhotonNetwork.RemoveCallbackTarget(this);
     }
+
     public override void OnEnable()
     {
         //base.OnEnable();

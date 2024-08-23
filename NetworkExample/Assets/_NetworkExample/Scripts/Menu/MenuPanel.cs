@@ -40,7 +40,7 @@ public class MenuPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        playerName.text = $"안녕하세요. {PhotonNetwork.LocalPlayer.NickName}";
+        playerName.text = $"안녕하세요. {HWFirebaseManager.Instance.usersRef.Child("userName").ToString()}";
         mainMenuPanel.gameObject.SetActive(true);
         createRoomPanel.gameObject.SetActive(false);
     }
@@ -59,6 +59,7 @@ public class MenuPanel : MonoBehaviour
 
     private void FindRoomButtonClick() // 방 목록을 받아오기 위해 로비에 입장
     {
+        print(1);
         PhotonNetwork.JoinLobby();
     }
 
